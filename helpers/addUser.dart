@@ -29,7 +29,7 @@ class addUser{
 
     }
     else if(responseFromServer["message"] == "failedToCreate"){
-      return "failedTocreate";
+      return "giveCorrectData";
 
     }
     

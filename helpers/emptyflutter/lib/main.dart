@@ -2,8 +2,6 @@ import 'package:requests/requests.dart';
 
 
 class addUser{
-
-
   String userName;
   String email;
   addUser({
@@ -31,21 +29,17 @@ class addUser{
 
     }
     else if(responseFromServer["message"] == "failedToCreate"){
-      return "failedTocreate";
+      return "giveCorrectData";
 
     }
-    
-    
     return "someThingWentWrong";
-   
-
   }
 
 }
 
 
 void main() async{
-    print(await  addUser(userName: "",
+    print(await  addUser(userName: "afrid",
     email: "afridayan01@gmail.com"
     
     ).add());
