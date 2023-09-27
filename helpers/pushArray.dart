@@ -10,7 +10,8 @@ class pushArray{
   });
   Future<dynamic> push() async{
     String url = "https://ameerunisatailors.cyclic.cloud/pushArray";
-    var server = await Requests.put(url,json: {
+    try{
+      var server = await Requests.put(url,json: {
       "email":email,
       "key":key,
       "value":value
@@ -21,5 +22,9 @@ class pushArray{
     else if(responseFromServer["message"] == "pushError")return "pushFailed";
     else if(responseFromServer["message"] == "userNotFound")return "userNotFound";
     else return "someThingWentWrong";
+    }
+    catch(e){
+      return "someThingWentWrong";
+    }
 }
 }

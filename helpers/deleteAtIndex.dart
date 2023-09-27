@@ -9,7 +9,8 @@ class deleteAtIndex{
   required this.position,
   });
   Future<dynamic> delete() async{
-    String url = "https://ameerunisatailors.cyclic.cloud/deleteIndex";
+    try{
+      String url = "https://ameerunisatailors.cyclic.cloud/deleteIndex";
     var server = await Requests.delete(url,json: {
       "email":email,
       "key":key,
@@ -21,5 +22,9 @@ class deleteAtIndex{
     else if(responseFromServer["message"] == "deleteError")return "deleteFailed";
     else if(responseFromServer["message"] == "userNotFound")return "userNotFound";
     else return "someThingWentWrong";
+    }
+    catch(e){
+      return "someThingWentWrong";
+    }
 }
 }

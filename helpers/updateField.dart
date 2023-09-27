@@ -10,27 +10,22 @@ class updateField{
   });
   Future<dynamic> update() async{
     String url = "https://ameerunisatailors.cyclic.cloud/updateParam";
-    var server = await Requests.patch(url,json: {
+    try{
+      var server = await Requests.patch(url,json: {
       "email":email,
       "key":key,
       "value":value
     });
     dynamic responseFromServer = server.json();
-    switch([responseFromServer["message"]]){
-      case "updateCompleted":
-        return "updateCompleted";
-        break;
-      case "wrongKey":
-        return "enteredWrongKey";
-        break;
-      case "updateError":
-        return "updateFailed";
-        break;
-      case "userNotFound":
-        return "userNotFound";
-        break;     
-      default:
-        return "someThingWentWrong";
+    if(responseFromServer["message"] == "updateCompleted")return "updateCompleted";
+    else if(responseFromServer["message"] == "wrongKey")return "enteredWrongKey";
+    else if(responseFromServer["message"] == "updateError")return "updateFailed";
+    else if(responseFromServer["message"] == "userNotFound")return "userNotFound";
+    else return "someThingWentWrong";
+
+    }
+    catch(e){
+      return "someThingWentWrong";
     }
   }
 }
