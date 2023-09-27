@@ -1,50 +1,28 @@
 import 'package:requests/requests.dart';
-
-
-class addUser{
-  String userName;
+class getUser{
   String email;
-  addUser({
-    required this.userName,
+  getUser({
     required this.email
   });
-
-  Future<String> add() async{
-    String url = "https://ameerunisatailors.cyclic.cloud/addUser/";
-    var server = await Requests.post(url,json: {
-      "userName":userName,
-      "email":email
-    });
+  Future<dynamic> findUser() async{
+    String url = "https://ameerunisatailors.cyclic.cloud/getUser/${email}";
+    var server = await Requests.get(url);
     var responseFromServer = server.json();
-    if(responseFromServer["message"] == "userCreated"){
-      return "userCreated";
-
+    if(responseFromServer["message"] == "findedUser"){
+      return responseFromServer["user"];
     }
-    else if(responseFromServer["message"] == "emailIsNotValid"){
-      return "emailIsNotValid";
-
+    else if(responseFromServer["message"] == "notFound"){
+      return "userNotFound";
     }
-    else if(responseFromServer["message"] == "userAlreadyExists"){
-      return "userAlreadyExists";
-
-    }
-    else if(responseFromServer["message"] == "failedToCreate"){
-      return "giveCorrectData";
-
+    else if(responseFromServer["message"] == "emailError"){
+      return "ProvideCorrectEmail";
     }
     return "someThingWentWrong";
   }
-
 }
 
-
 void main() async{
-    print(await  addUser(userName: "afrid",
-    email: "afridayan01@gmail.com"
-    
-    ).add());
-
+  print(await getUser(email: "afridayan01@gmaadsil.com").findUser());
    
-  
 }
 
