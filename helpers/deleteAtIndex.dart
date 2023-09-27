@@ -23,8 +23,3 @@ class deleteAtIndex{
     else return "someThingWentWrong";
 }
 }
-void main() async{
-  print(await deleteAtIndex(email: "afridayan01@gmail.com", key: "bagItems",
-  position: 1
-  ).delete());
-}

@@ -8,16 +8,10 @@ class getUser{
     String url = "https://ameerunisatailors.cyclic.cloud/getUser/${email}";
     var server = await Requests.get(url);
     var responseFromServer = server.json();
-    if(responseFromServer["message"] == "findedUser"){
-      return responseFromServer["user"];
-    }
-    else if(responseFromServer["message"] == "notFound"){
-      return "userNotFound";
-    }
-    else if(responseFromServer["message"] == "emailError"){
-      return "ProvideCorrectEmail";
-    }
-    return "someThingWentWrong";
+    if(responseFromServer["message"] == "findedUser")return responseFromServer["user"];
+    else if(responseFromServer["message"] == "notFound")return "userNotFound";
+    else if(responseFromServer["message"] == "emailError")return "ProvideCorrectEmail";
+    else return "someThingWentWrong";
   }
 }
 void main() async{

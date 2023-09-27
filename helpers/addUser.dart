@@ -13,19 +13,11 @@ class addUser{
       "email":email
     });
     var responseFromServer = server.json();
-    if(responseFromServer["message"] == "userCreated"){
-      return "userCreated";
-    }
-    else if(responseFromServer["message"] == "emailIsNotValid"){
-      return "emailIsNotValid";
-    }
-    else if(responseFromServer["message"] == "userAlreadyExists"){
-      return "userAlreadyExists";
-    }
-    else if(responseFromServer["message"] == "failedToCreate"){
-      return "giveCorrectData";
-    }
-    return "someThingWentWrong";
+    if(responseFromServer["message"] == "userCreated")return "userCreated";
+    else if(responseFromServer["message"] == "emailIsNotValid")return "emailIsNotValid";
+    else if(responseFromServer["message"] == "userAlreadyExists")return "userAlreadyExists";
+    else if(responseFromServer["message"] == "failedToCreate")return "giveCorrectData";
+    else return "someThingWentWrong";
   }
 
 }
